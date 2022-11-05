@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>sylar服务器框架</title>
+    <link href="/2022/11/05/sylar%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A1%86%E6%9E%B6/"/>
+    <url>/2022/11/05/sylar%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A1%86%E6%9E%B6/</url>
+    
+    <content type="html"><![CDATA[<h1 id="sylar"><a href="#sylar" class="headerlink" title="sylar"></a>sylar</h1><p>##日志系统<br>1)<br>    Log4j</p><pre><code class="hljs">Logger(定义日志类别)  |  |---------Formatter(日志格式)  |Appender(日志输出地方)</code></pre><h2 id="协程库封装"><a href="#协程库封装" class="headerlink" title="协程库封装"></a>协程库封装</h2><h2 id="socket函数库"><a href="#socket函数库" class="headerlink" title="socket函数库"></a>socket函数库</h2><h2 id="http协议开发"><a href="#http协议开发" class="headerlink" title="http协议开发"></a>http协议开发</h2><h2 id="分布协议"><a href="#分布协议" class="headerlink" title="分布协议"></a>分布协议</h2>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>测试</title>
     <link href="/2022/11/05/%E6%B5%8B%E8%AF%95/"/>
     <url>/2022/11/05/%E6%B5%8B%E8%AF%95/</url>
