@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>吴恩达-机器学习-线性回归模型</title>
+    <link href="/2022/11/25/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/"/>
+    <url>/2022/11/25/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/</url>
+    
+    <content type="html"><![CDATA[<p>对于线性模型<br>$$<br>f(x)&#x3D;wx+b<br>$$<br>来说w,b称为模型的参数(parameters,也可以称为coefficients,weights)</p><p>对于w,b来说我们的目标是如何让对于所有的训练集$(x^{(i)},y^{(i)})$来说让$\hat y^{(i)}$与$y^{(i)}$最小</p><p><img src="/2022/11/25/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/Snipaste_2022-11-25_21-35-47.png"></p><p>所以它的代价函数(cost function)也十分简单:<br>$$<br>J(w,b)&#x3D;\frac{1}{2m}\sum\limits_{i&#x3D;1}^m{(\hat y^{(i)}-\hat y ^{(i)})^2}<br>$$<br>这里的2是未来方便运算，分母的m是确保随着训练集样本数量的变大，代价函数的值不会随之增大</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>监督学习</title>
     <link href="/2022/11/24/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/"/>
     <url>/2022/11/24/%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0/</url>
