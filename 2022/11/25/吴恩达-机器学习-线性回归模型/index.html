@@ -13,26 +13,26 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Jerry Van">
   <meta name="keywords" content="">
   
     <meta name="description" content="对于线性模型  来说w,b称为模型的参数(parameters,也可以称为coefficients,weights) 对于w,b来说我们的目标是如何让对于所有的训练集来说让与最小  所以它的代价函数(cost function)也十分简单:  这里的2是未来方便运算，分母的m是确保随着训练集样本数量的变大，代价函数的值不会随之增大 梯度下降 在获得损失函数J(w,b)之后，我们希望当">
 <meta property="og:type" content="article">
 <meta property="og:title" content="吴恩达-机器学习-线性回归模型(包括梯度下降)">
-<meta property="og:url" content="http://example.com/2022/11/25/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/index.html">
+<meta property="og:url" content="https://jerryvan22.github.io/2022/11/25/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="对于线性模型  来说w,b称为模型的参数(parameters,也可以称为coefficients,weights) 对于w,b来说我们的目标是如何让对于所有的训练集来说让与最小  所以它的代价函数(cost function)也十分简单:  这里的2是未来方便运算，分母的m是确保随着训练集样本数量的变大，代价函数的值不会随之增大 梯度下降 在获得损失函数J(w,b)之后，我们希望当">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2022/11/25/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/Snipaste_2022-11-25_21-35-47.png">
-<meta property="og:image" content="http://example.com/2022/11/25/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/Snipaste_2022-11-29_16-23-09.png">
-<meta property="og:image" content="http://example.com/2022/11/25/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/Snipaste_2022-11-29_16-35-12.png">
-<meta property="og:image" content="http://example.com/2022/11/25/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/Snipaste_2022-11-29_16-55-20.png">
+<meta property="og:image" content="https://jerryvan22.github.io/2022/11/25/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/Snipaste_2022-11-25_21-35-47.png">
+<meta property="og:image" content="https://jerryvan22.github.io/2022/11/25/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/Snipaste_2022-11-29_16-23-09.png">
+<meta property="og:image" content="https://jerryvan22.github.io/2022/11/25/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/Snipaste_2022-11-29_16-35-12.png">
+<meta property="og:image" content="https://jerryvan22.github.io/2022/11/25/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/Snipaste_2022-11-29_16-55-20.png">
 <meta property="article:published_time" content="2022-11-25T12:47:55.000Z">
 <meta property="article:modified_time" content="2022-11-29T11:02:22.743Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="Jerry Van">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2022/11/25/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/Snipaste_2022-11-25_21-35-47.png">
+<meta name="twitter:image" content="https://jerryvan22.github.io/2022/11/25/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/Snipaste_2022-11-25_21-35-47.png">
   
   
   
@@ -74,7 +74,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"jerryvan22.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -439,13 +439,13 @@ function)，除了全局最小值，它没有任何局部最小值</p>
   <div class="license-box my-3">
     <div class="license-title">
       <div>吴恩达-机器学习-线性回归模型(包括梯度下降)</div>
-      <div>http://example.com/2022/11/25/吴恩达-机器学习-线性回归模型/</div>
+      <div>https://jerryvan22.github.io/2022/11/25/吴恩达-机器学习-线性回归模型/</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>John Doe</div>
+          <div>Jerry Van</div>
         </div>
       
       
