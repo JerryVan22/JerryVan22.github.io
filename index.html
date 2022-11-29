@@ -71,7 +71,119 @@
 
 
   
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 
 <body>
@@ -231,7 +343,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2022/11/25/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/" target="_self">
         <div>
-          对于线性模型  f(x)=wx+b来说w,b称为模型的参数(parameters,也可以称为coefficients,weights) 对于w,b来说我们的目标是如何让对于所有的训练集$(x^{(i)},y^{(i)})$来说让$\hat y^{(i)}$与$y^{(i)}$最小  所以它的代价函数(cost function)也十分简单:  J(w,b)=\frac{1}{2m}\sum\lim
+          对于线性模型  来说w,b称为模型的参数(parameters,也可以称为coefficients,weights) 对于w,b来说我们的目标是如何让对于所有的训练集来说让与最小  所以它的代价函数(cost function)也十分简单:  这里的2是未来方便运算，分母的m是确保随着训练集样本数量的变大，代价函数的值不会随之增大 梯度下降 在获得损失函数J(w,b)之后，我们希望当
         </div>
       </a>
 
@@ -304,7 +416,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2022/11/23/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%B8%A9%E5%92%8C%E7%9A%84%E4%BB%8B%E7%BB%8D/" target="_self">
         <div>
-          机器学习概念任何机器学习都可以通过以下三个概念表示: 任务T：比如构建一个垃圾邮件过滤器，将电子邮件归类为垃圾邮件或正常邮件。 经验E：通过经验来学习执行任务。比如对于垃圾邮件过滤器，需要将一组电子邮件人工分类为电子邮件或正常邮件。 表现P:来体现表现任务的能力，比如我们的垃圾邮件过滤器将电子邮件正确分类为垃圾邮件或正常邮件的百分比。 数据集机器学习方法依赖于以前的经验，通常由数据集表示。这里使用
+          机器学习概念 任何机器学习都可以通过以下三个概念表示: 任务T：比如构建一个垃圾邮件过滤器，将电子邮件归类为垃圾邮件或正常邮件。 经验E：通过经验来学习执行任务。比如对于垃圾邮件过滤器，需要将一组电子邮件人工分类为电子邮件或正常邮件。 表现P:来体现表现任务的能力，比如我们的垃圾邮件过滤器将电子邮件正确分类为垃圾邮件或正常邮件的百分比。 数据集 机器学习方法依赖于以前的经验，通常由数据
         </div>
       </a>
 
@@ -337,7 +449,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2022/11/05/sylar%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A1%86%E6%9E%B6/" target="_self">
         <div>
-          sylar日志系统1)    Log4j Logger(定义日志类别)   |   |---------Formatter(日志格式)   | Appender(日志输出地方) 协程库封装socket函数库http协议开发分布协议
+          sylar ##日志系统 1) Log4j Logger(定义日志类别)   |   |---------Formatter(日志格式)   | Appender(日志输出地方) 协程库封装 socket函数库 http协议开发 分布协议
         </div>
       </a>
 
