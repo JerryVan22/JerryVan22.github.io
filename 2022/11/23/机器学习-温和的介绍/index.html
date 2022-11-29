@@ -221,7 +221,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.1k 字
+          5k 字
         
       </span>
     
@@ -232,7 +232,7 @@
         
         
         
-          43 分钟
+          42 分钟
         
       </span>
     
@@ -281,20 +281,20 @@
 <p>表现P:来体现表现任务的能力，比如我们的垃圾邮件过滤器将电子邮件正确分类为垃圾邮件或正常邮件的百分比。</p>
 <h1 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h1><p>机器学习方法依赖于以前的经验，通常由数据集表示。这里使用鸢尾花数据集，它包含来自三种不同鸢尾花物种的150个实例，包括萼片和花瓣的长度和宽度</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> datasets<br><br>iris = datasets.load_iris()<br>X_iris, Y_iris = iris.data, iris.target<br><span class="hljs-built_in">print</span>(X_iris.shape, Y_iris.shape)<span class="hljs-comment"># (150, 4) (150,)</span><br><span class="hljs-built_in">print</span>(X_iris[<span class="hljs-number">0</span>], Y_iris[<span class="hljs-number">0</span>]) <span class="hljs-comment"># [5.1 3.5 1.4 0.2] 0</span><br></code></pre></td></tr></table></figure>
-
 <p><strong>iris</strong>数据集是一个对象，它有两个主要部分:</p>
 <p>一个<strong>data</strong>数组，对于每个实例，都有萼片长度，萼片宽度，花瓣长度，花瓣宽度。（scikit-learn使用ndarrays,而不是更具描述性但效率更低的Python词典或列表。这个数组的shape是(150,4)，代表有150行实例和每个实例4个特征</p>
 <p>一个<strong>targe</strong>数组，值在0到2的范围，分别对应(0:山鸢尾，1:杂色鸢尾，2:弗吉尼亚鸢尾)</p>
 <h1 id="线性分类"><a href="#线性分类" class="headerlink" title="线性分类"></a>线性分类</h1><p>线性分类模型试图做的:构建一条线(或者说特征空间的超平面)，最优的分离两个目标类，并将其用作决策边界</p>
 <p>这里引入一个简单的学习任务：我们瞄准鸢尾花实例，以预测它是否是一个山鸢尾。这是一个二元分类任务。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split<br><span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> preprocessing<br><span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> datasets<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><br>iris = datasets.load_iris()<br>X_iris, Y_iris = iris.data, iris.target<br>X, Y = X_iris[:, :<span class="hljs-number">2</span>], Y_iris<br>X_train, X_test, Y_train, Y_test = train_test_split(<br>    X, Y, test_size=<span class="hljs-number">0.25</span>, random_state=<span class="hljs-number">33</span>)<br><br>scaler = preprocessing.StandardScaler().fit(X_train)<br>X_train = scaler.transform(X_train)<br>X_test = scaler.transform(X_test)<br><br>colors = [<span class="hljs-string">&#x27;red&#x27;</span>, <span class="hljs-string">&#x27;green&#x27;</span>, <span class="hljs-string">&#x27;blue&#x27;</span>]<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(colors)):<br>    xs = X_train[:, <span class="hljs-number">0</span>][Y_train == i]<br>    ys = X_train[:, <span class="hljs-number">1</span>][Y_train == i]<br>    plt.scatter(xs, ys, c=colors[i])<br><br>plt.legend(iris.target_names)<br>plt.xlabel(<span class="hljs-string">&#x27;Sepal length&#x27;</span>)<br>plt.ylabel(<span class="hljs-string">&#x27;Sepal width&#x27;</span>)<br>plt.show()<br><br></code></pre></td></tr></table></figure>
-
 <p><img src="/2022/11/23/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%B8%A9%E5%92%8C%E7%9A%84%E4%BB%8B%E7%BB%8D/Figure_1.png" srcset="/img/loading.gif" lazyload alt="Figure_1"></p>
-<p>实现线性分类，需要使用scikit-learn中的SGDClassfuer,SGD代表随机梯度下降，用于查找函数的局部最小值（本例中为损失函数），fit函数接受训练数据和训练类别，并且构造分类器。现在根据clf的属性有<br>$$<br>clf.intercept_[i]+x1*clf.coef_[i,0]+clf.coef[i,1]*x2&#x3D;0<br>$$<br>即给定x1和x2的值，如果它的值大于0，它就在决策边界之上。但是系数矩阵有三行，代表它提出了三个将一个类与其他类别分开的直线</p>
+<p>实现线性分类，需要使用scikit-learn中的SGDClassfuer,SGD代表随机梯度下降，用于查找函数的局部最小值（本例中为损失函数），fit函数接受训练数据和训练类别，并且构造分类器。现在根据clf的属性有</p>
+<script type="math/tex; mode=display">
+clf.intercept_[i]+x1*clf.coef_[i,0]+clf.coef[i,1]*x2=0</script><p>即给定x1和x2的值，如果它的值大于0，它就在决策边界之上。但是系数矩阵有三行，代表它提出了三个将一个类与其他类别分开的直线</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split<br><span class="hljs-keyword">from</span> s了klearn <span class="hljs-keyword">import</span> preprocessing<br><span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> datasets<br><span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> metrics<br><span class="hljs-keyword">from</span> sklearn.linear_model <span class="hljs-keyword">import</span> SGDClassifier<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>iris = datasets.load_iris()<br>X_iris, Y_iris = iris.data, iris.target<br>X, Y = X_iris[:, :<span class="hljs-number">2</span>], Y_iris<br>X_train, X_test, Y_train, Y_test = train_test_split(<br>    X, Y, test_size=<span class="hljs-number">0.25</span>, random_state=<span class="hljs-number">33</span>)<br><br>scaler = preprocessing.StandardScaler().fit(X_train)<br>X_train = scaler.transform(X_train)<br>X_test = scaler.transform(X_test)<br><br><span class="hljs-comment"># colors = [&#x27;red&#x27;, &#x27;green&#x27;, &#x27;blue&#x27;]</span><br><span class="hljs-comment"># for i in range(len(colors)):</span><br><span class="hljs-comment">#     xs = X_train[:, 0][Y_train == i]</span><br><span class="hljs-comment">#     ys = X_train[:, 1][Y_train == i]</span><br><span class="hljs-comment">#     plt.scatter(xs, ys, c=colors[i])</span><br><br><span class="hljs-comment"># plt.legend(iris.target_names)</span><br><span class="hljs-comment"># plt.xlabel(&#x27;Sepal length&#x27;)</span><br><span class="hljs-comment"># plt.ylabel(&#x27;Sepal width&#x27;)</span><br><span class="hljs-comment"># plt.show()</span><br><br>clf=SGDClassifier()<br>clf.fit(X_train,Y_train)<br>Y_train_pred=clf.predict(X_train)<br><span class="hljs-comment"># print(metrics.accuracy_score(Y_train,Y_train_pred))</span><br><span class="hljs-comment"># print(clf.coef_)</span><br><br>x_min,x_max=X_train[:,<span class="hljs-number">0</span>].<span class="hljs-built_in">min</span>()-<span class="hljs-number">.5</span>,X_train[:,<span class="hljs-number">0</span>].<span class="hljs-built_in">max</span>()+<span class="hljs-number">.5</span><br>y_min,y_max=X_train[:,<span class="hljs-number">1</span>].<span class="hljs-built_in">min</span>()-<span class="hljs-number">.5</span>,X_train[:,<span class="hljs-number">1</span>].<span class="hljs-built_in">max</span>()+<span class="hljs-number">.5</span><br>xs=np.arange(x_min,x_max,<span class="hljs-number">0.5</span>)<br>fig,axes=plt.subplots(<span class="hljs-number">1</span>,<span class="hljs-number">3</span>)<br>fig.set_size_inches(<span class="hljs-number">10</span>,<span class="hljs-number">6</span>)<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">3</span>):<br>    axes[i].set_aspect(<span class="hljs-string">&#x27;equal&#x27;</span>)<br>    axes[i].set_title(<span class="hljs-built_in">str</span>(i))<br>    axes[i].set_xlabel(<span class="hljs-string">&#x27;length&#x27;</span>)<br>    axes[i].set_ylabel(<span class="hljs-string">&#x27;width&#x27;</span>)<br>    axes[i].set_xlim(x_min,x_max)<br>    axes[i].set_ylim(y_min,y_max)<br>    plt.sca(axes[i])<br>    plt.scatter(X_train[:,<span class="hljs-number">0</span>],X_train[:,<span class="hljs-number">1</span>],c=Y_train,cmap=plt.cm.prism)<br>    ys=(-clf.intercept_[i]-xs*clf.coef_[i,<span class="hljs-number">0</span>])/clf.coef_[i,<span class="hljs-number">1</span>]<span class="hljs-comment">#clf.intercept_[i]+xs*clf.coef_[i,0]+clf.coef[i,1]*ys=0</span><br>    plt.plot(xs,ys)<br>    <br><br>plt.show()<br><br></code></pre></td></tr></table></figure>
-
 <p><img src="/2022/11/23/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%B8%A9%E5%92%8C%E7%9A%84%E4%BB%8B%E7%BB%8D/res.png" srcset="/img/loading.gif" lazyload alt="res"></p>
-<h1 id="评估结果"><a href="#评估结果" class="headerlink" title="评估结果"></a>评估结果</h1><table>
+<h1 id="评估结果"><a href="#评估结果" class="headerlink" title="评估结果"></a>评估结果</h1><div class="table-container">
+<table>
 <thead>
 <tr>
 <th></th>
@@ -302,7 +302,8 @@
 <th>预测:负例</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>目标:正例</td>
 <td>真正例(TP)</td>
 <td>假负例(FN)</td>
@@ -312,28 +313,25 @@
 <td>假正例(FP)</td>
 <td>真负例(TN)</td>
 </tr>
-</tbody></table>
-<p>m为样本量即m&#x3D;TP+TN+FP+FB</p>
-<p>准确率&#x3D;(TP+TN)&#x2F;m</p>
-<p>精确率&#x3D; TP &#x2F;（TP+FP）</p>
-<p>召回率&#x3D;TP &#x2F;   (TP+FN)</p>
-<p>F1 得分 &#x3D;2  * 精确率  * 召回 &#x2F; （精确率 + 召回率)</p>
+</tbody>
+</table>
+</div>
+<p>m为样本量即m=TP+TN+FP+FB</p>
+<p>准确率=(TP+TN)/m</p>
+<p>精确率= TP /（TP+FP）</p>
+<p>召回率=TP /   (TP+FN)</p>
+<p>F1 得分 =2  <em> 精确率  </em> 召回 / （精确率 + 召回率)</p>
 <p>sklearn中可以如下所用</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split<br><span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> preprocessing<br><span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> datasets<br><span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> metrics<br><span class="hljs-keyword">from</span> sklearn.linear_model <span class="hljs-keyword">import</span> SGDClassifier<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br>iris = datasets.load_iris()<br>X_iris, Y_iris = iris.data, iris.target<br>X, Y = X_iris[:, :<span class="hljs-number">2</span>], Y_iris<br>X_train, X_test, Y_train, Y_test = train_test_split(<br>    X, Y, test_size=<span class="hljs-number">0.25</span>, random_state=<span class="hljs-number">33</span>)<br><br>scaler = preprocessing.StandardScaler().fit(X_train)<br>X_train = scaler.transform(X_train)<br>X_test = scaler.transform(X_test)<br><br><br><br>clf=SGDClassifier()<br>clf.fit(X_train,Y_train)<br>Y_pred=clf.predict(X_test)<br><span class="hljs-built_in">print</span>(metrics.classification_report(Y_test,Y_pred,target_names=iris.target_names))<br><br></code></pre></td></tr></table></figure>
-
-
-
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs ini">				precision    recall  f1-score   support<br><br>      setosa       1.00      1.00      1.00         8<br>  versicolor       0.00      0.00      0.00        11<br>   virginica       0.63      1.00      0.78        19<br><br>    accuracy                           0.71        38<br>   macro avg       0.54      0.67      0.59        38<br>weighted avg       0.53      0.71      0.60        38<br></code></pre></td></tr></table></figure>
-
 <p>此外，对于评估过程，我们可以使用交叉验证。K折交叉验证的常用步骤如下:</p>
 <ol>
 <li>将数据集划分为K个不同子集</li>
 <li>通过训练k-1个子集并测试剩余的一个子集来创建k个不同模型</li>
 <li>测量k个模型的表现并取平均值</li>
 </ol>
-<p>比如k&#x3D;5就代表每次训练80%数据并测试剩余20%</p>
+<p>比如k=5就代表每次训练80%数据并测试剩余20%</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs python">*<span class="hljs-keyword">from</span>* sklearn.model_selection *<span class="hljs-keyword">import</span>* cross_val_score, KFold<br><br>*<span class="hljs-keyword">from</span>* sklearn.pipeline *<span class="hljs-keyword">import</span>* Pipeline<br><br>*<span class="hljs-keyword">from</span>* sklearn.linear_model *<span class="hljs-keyword">import</span>* SGDClassifier<br><br>*<span class="hljs-keyword">from</span>* sklearn *<span class="hljs-keyword">import</span>* datasets<br><br>*<span class="hljs-keyword">from</span>* sklearn *<span class="hljs-keyword">import</span>* preprocessing<br><br><br><br>iris = datasets.load_iris()<br><br>X_iris, Y_iris = iris.data, iris.target<br><br>X, Y = X_iris[:, :<span class="hljs-number">2</span>], Y_iris<br><br>clf = Pipeline([<br><br>  (<span class="hljs-string">&#x27;scaler&#x27;</span>, preprocessing.StandardScaler()),<br><br>  (<span class="hljs-string">&#x27;linear_model&#x27;</span>, SGDClassifier())<br><br>])<br><br><br><br>cv = KFold(<span class="hljs-number">5</span>, *shuffle*=<span class="hljs-literal">True</span>, *random_state*=<span class="hljs-number">22</span>)<br><br>score = cross_val_score(clf, X, Y, *cv*=cv)<br><br><span class="hljs-built_in">print</span>(score)<span class="hljs-comment"># [0.76666667 0.76666667 0.86666667 0.73333333 0.7       ]</span><br></code></pre></td></tr></table></figure>
-
 
                 
               </div>
