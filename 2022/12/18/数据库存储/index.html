@@ -16,26 +16,25 @@
   <meta name="author" content="Jerry Van">
   <meta name="keywords" content="">
   
-    <meta name="description" content="多分类问题 目标取值在一个离散集合中，而不是像以前的分类问题一样取值只要两个。 其对应的公式为  z_j&#x3D;\vec{w_j} \cdot \vec{x} +b_j j&#x3D;1,...,N \\ a_j&#x3D; \frac{e^{z_j}}{\sum_{k&#x3D;1}^{N}e^{z_k}}&#x3D;P(y&#x3D;j|\vec{x} )下面是一个计算例子  损失函数定义为  loss(a_1,...,a_N,y)&#x3D;\begin">
+    <meta name="description" content="数据库存储计算机存储体系如图，在DRAM(内存)及以上为易失性(volatile)存储,即数据容易丢失（需要通电维持）。在此之下为非易失性存储，即数据不容易丢失，可以在不通电情况下保存。  而易失性存储可以字节可寻址，即支持随机访问。而对非易失性存储，它们具有的是块寻找能力。此外，它们的访问速度也是由上到下。  Q:数据库的关键是将数据从磁盘送人内存，那为什么不全部交由操作系统管理呢 A:当我们只">
 <meta property="og:type" content="article">
-<meta property="og:title" content="吴恩达-机器学习-多分类问题">
-<meta property="og:url" content="https://jerryvan22.github.io/2022/12/14/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%A4%9A%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:title" content="数据库存储">
+<meta property="og:url" content="https://jerryvan22.github.io/2022/12/18/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%98%E5%82%A8/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="多分类问题 目标取值在一个离散集合中，而不是像以前的分类问题一样取值只要两个。 其对应的公式为  z_j&#x3D;\vec{w_j} \cdot \vec{x} +b_j j&#x3D;1,...,N \\ a_j&#x3D; \frac{e^{z_j}}{\sum_{k&#x3D;1}^{N}e^{z_k}}&#x3D;P(y&#x3D;j|\vec{x} )下面是一个计算例子  损失函数定义为  loss(a_1,...,a_N,y)&#x3D;\begin">
+<meta property="og:description" content="数据库存储计算机存储体系如图，在DRAM(内存)及以上为易失性(volatile)存储,即数据容易丢失（需要通电维持）。在此之下为非易失性存储，即数据不容易丢失，可以在不通电情况下保存。  而易失性存储可以字节可寻址，即支持随机访问。而对非易失性存储，它们具有的是块寻找能力。此外，它们的访问速度也是由上到下。  Q:数据库的关键是将数据从磁盘送人内存，那为什么不全部交由操作系统管理呢 A:当我们只">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://jerryvan22.github.io/2022/12/14/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%A4%9A%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98/Snipaste_2022-12-14_19-01-23.png">
-<meta property="og:image" content="https://jerryvan22.github.io/2022/12/14/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%A4%9A%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98/Snipaste_2022-12-14_19-20-56.png">
-<meta property="og:image" content="https://jerryvan22.github.io/2022/12/14/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%A4%9A%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98/Snipaste_2022-12-14_19-38-45.png">
-<meta property="article:published_time" content="2022-12-14T10:59:10.000Z">
-<meta property="article:modified_time" content="2022-12-14T12:52:07.243Z">
+<meta property="og:image" content="https://jerryvan22.github.io/2022/12/18/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%98%E5%82%A8/Snipaste_2022-12-18_05-10-22.png">
+<meta property="og:image" content="https://jerryvan22.github.io/2022/12/18/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%98%E5%82%A8/Snipaste_2022-12-18_05-21-15.png">
+<meta property="article:published_time" content="2022-12-17T21:09:56.000Z">
+<meta property="article:modified_time" content="2022-12-17T21:31:43.099Z">
 <meta property="article:author" content="Jerry Van">
-<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="数据库">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://jerryvan22.github.io/2022/12/14/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%A4%9A%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98/Snipaste_2022-12-14_19-01-23.png">
+<meta name="twitter:image" content="https://jerryvan22.github.io/2022/12/18/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%98%E5%82%A8/Snipaste_2022-12-18_05-10-22.png">
   
   
   
-  <title>吴恩达-机器学习-多分类问题 - Hexo</title>
+  <title>数据库存储 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -312,7 +311,7 @@ mjx-container[display="true"] + br {
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="吴恩达-机器学习-多分类问题"></span>
+            <span id="subtitle" data-typed-text="数据库存储"></span>
           
         </div>
 
@@ -323,8 +322,8 @@ mjx-container[display="true"] + br {
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-12-14 18:59" pubdate>
-          2022年12月14日 晚上
+        <time datetime="2022-12-18 05:09" pubdate>
+          2022年12月18日 凌晨
         </time>
       </span>
     
@@ -335,7 +334,7 @@ mjx-container[display="true"] + br {
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          291 字
+          231 字
         
       </span>
     
@@ -346,7 +345,7 @@ mjx-container[display="true"] + br {
         
         
         
-          3 分钟
+          2 分钟
         
       </span>
     
@@ -384,25 +383,17 @@ mjx-container[display="true"] + br {
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">吴恩达-机器学习-多分类问题</h1>
+            <h1 style="display: none">数据库存储</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="多分类问题"><a href="#多分类问题" class="headerlink" title="多分类问题"></a>多分类问题</h1><p><img src="/2022/12/14/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%A4%9A%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98/Snipaste_2022-12-14_19-01-23.png" srcset="/img/loading.gif" lazyload alt></p>
-<p>目标取值在一个离散集合中，而不是像以前的分类问题一样取值只要两个。</p>
-<p>其对应的公式为</p>
-<script type="math/tex; mode=display">
-z_j=\vec{w_j} \cdot \vec{x} +b_j j=1,...,N \\
-a_j= \frac{e^{z_j}}{\sum_{k=1}^{N}e^{z_k}}=P(y=j|\vec{x} )</script><p>下面是一个计算例子</p>
-<p><img src="/2022/12/14/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%A4%9A%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98/Snipaste_2022-12-14_19-20-56.png" srcset="/img/loading.gif" lazyload alt></p>
-<p>损失函数定义为</p>
-<script type="math/tex; mode=display">
-loss(a_1,...,a_N,y)=\begin {cases} {-loga_1 \quad if \quad y=1}\\
-                      -loga_2 \quad if \quad y=2 \\
-                      ...\\
-                      -loga_N \quad if \quad y=N
-                      \end{cases}</script><h1 id="神经网络中的softmax"><a href="#神经网络中的softmax" class="headerlink" title="神经网络中的softmax"></a>神经网络中的softmax</h1><p><img src="/2022/12/14/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%A4%9A%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98/Snipaste_2022-12-14_19-38-45.png" srcset="/img/loading.gif" lazyload alt></p>
+                <h1 id="数据库存储"><a href="#数据库存储" class="headerlink" title="数据库存储"></a>数据库存储</h1><h2 id="计算机存储体系"><a href="#计算机存储体系" class="headerlink" title="计算机存储体系"></a>计算机存储体系</h2><p>如图，在DRAM(内存)及以上为易失性(volatile)存储,即数据容易丢失（需要通电维持）。在此之下为非易失性存储，即数据不容易丢失，可以在不通电情况下保存。</p>
+<p><img src="/2022/12/18/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%98%E5%82%A8/Snipaste_2022-12-18_05-10-22.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>而易失性存储可以字节可寻址，即支持随机访问。而对非易失性存储，它们具有的是块寻找能力。此外，它们的访问速度也是由上到下。</p>
+<p><img src="/2022/12/18/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%98%E5%82%A8/Snipaste_2022-12-18_05-21-15.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>Q:数据库的关键是将数据从磁盘送人内存，那为什么不全部交由操作系统管理呢</p>
+<p>A:当我们只读访问数据时，这交给操作系统管理是方便的，但是并发写数据时情况会复杂起来</p>
 
                 
               </div>
@@ -415,7 +406,7 @@ loss(a_1,...,a_N,y)=\begin {cases} {-loga_1 \quad if \quad y=1}\\
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">#机器学习</a>
+        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">#数据库</a>
       
     </div>
   
@@ -427,8 +418,8 @@ loss(a_1,...,a_N,y)=\begin {cases} {-loga_1 \quad if \quad y=1}\\
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>吴恩达-机器学习-多分类问题</div>
-      <div>https://jerryvan22.github.io/2022/12/14/吴恩达-机器学习-多分类问题/</div>
+      <div>数据库存储</div>
+      <div>https://jerryvan22.github.io/2022/12/18/数据库存储/</div>
     </div>
     <div class="license-meta">
       
@@ -440,7 +431,7 @@ loss(a_1,...,a_N,y)=\begin {cases} {-loga_1 \quad if \quad y=1}\\
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年12月14日</div>
+          <div>2022年12月18日</div>
         </div>
       
       
@@ -472,18 +463,12 @@ loss(a_1,...,a_N,y)=\begin {cases} {-loga_1 \quad if \quad y=1}\\
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/12/15/%E8%AE%BA%E6%96%87/" title="">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/12/06/cs231n-%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB-%E7%BA%BF%E6%80%A7%E5%88%86%E7%B1%BB/" title="cs231n-图像分类-线性分类">
-                        <span class="hidden-mobile">cs231n-图像分类-线性分类</span>
+                      <a href="/2022/12/15/%E8%AE%BA%E6%96%87/" title="">
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

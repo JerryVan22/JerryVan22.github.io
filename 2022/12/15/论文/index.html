@@ -16,26 +16,23 @@
   <meta name="author" content="Jerry Van">
   <meta name="keywords" content="">
   
-    <meta name="description" content="多分类问题 目标取值在一个离散集合中，而不是像以前的分类问题一样取值只要两个。 其对应的公式为  z_j&#x3D;\vec{w_j} \cdot \vec{x} +b_j j&#x3D;1,...,N \\ a_j&#x3D; \frac{e^{z_j}}{\sum_{k&#x3D;1}^{N}e^{z_k}}&#x3D;P(y&#x3D;j|\vec{x} )下面是一个计算例子  损失函数定义为  loss(a_1,...,a_N,y)&#x3D;\begin">
+    <meta name="description" content="操作技能量化 第一部分为飞行员 驾驶飞机应具备的基本技能：①完成既定的任务，如：是否将飞机停在正确的停机位； ②在完成任务的过程中必须符合相关规定，不能违反飞行规则。  第二部分为飞行员操 作的熟练程度：①操作是否及时，如：执行拉平时的速度、高度是否准确；②操作是否稳定，如是否平滑地操纵驾驶杆。      其中操作的平稳性、规范性是用来评价飞行员对控制部件操作的优劣，完成度和及时性是根据飞机表现出">
 <meta property="og:type" content="article">
-<meta property="og:title" content="吴恩达-机器学习-多分类问题">
-<meta property="og:url" content="https://jerryvan22.github.io/2022/12/14/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%A4%9A%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://jerryvan22.github.io/2022/12/15/%E8%AE%BA%E6%96%87/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="多分类问题 目标取值在一个离散集合中，而不是像以前的分类问题一样取值只要两个。 其对应的公式为  z_j&#x3D;\vec{w_j} \cdot \vec{x} +b_j j&#x3D;1,...,N \\ a_j&#x3D; \frac{e^{z_j}}{\sum_{k&#x3D;1}^{N}e^{z_k}}&#x3D;P(y&#x3D;j|\vec{x} )下面是一个计算例子  损失函数定义为  loss(a_1,...,a_N,y)&#x3D;\begin">
+<meta property="og:description" content="操作技能量化 第一部分为飞行员 驾驶飞机应具备的基本技能：①完成既定的任务，如：是否将飞机停在正确的停机位； ②在完成任务的过程中必须符合相关规定，不能违反飞行规则。  第二部分为飞行员操 作的熟练程度：①操作是否及时，如：执行拉平时的速度、高度是否准确；②操作是否稳定，如是否平滑地操纵驾驶杆。      其中操作的平稳性、规范性是用来评价飞行员对控制部件操作的优劣，完成度和及时性是根据飞机表现出">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://jerryvan22.github.io/2022/12/14/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%A4%9A%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98/Snipaste_2022-12-14_19-01-23.png">
-<meta property="og:image" content="https://jerryvan22.github.io/2022/12/14/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%A4%9A%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98/Snipaste_2022-12-14_19-20-56.png">
-<meta property="og:image" content="https://jerryvan22.github.io/2022/12/14/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%A4%9A%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98/Snipaste_2022-12-14_19-38-45.png">
-<meta property="article:published_time" content="2022-12-14T10:59:10.000Z">
-<meta property="article:modified_time" content="2022-12-14T12:52:07.243Z">
+<meta property="og:image" content="https://jerryvan22.github.io/2022/12/15/%E8%AE%BA%E6%96%87/Users/van/AppData/Roaming/Typora/typora-user-images/image-20221215062200962.png">
+<meta property="article:published_time" content="2022-12-14T22:30:41.526Z">
+<meta property="article:modified_time" content="2022-12-14T22:31:04.261Z">
 <meta property="article:author" content="Jerry Van">
-<meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://jerryvan22.github.io/2022/12/14/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%A4%9A%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98/Snipaste_2022-12-14_19-01-23.png">
+<meta name="twitter:image" content="https://jerryvan22.github.io/2022/12/15/%E8%AE%BA%E6%96%87/Users/van/AppData/Roaming/Typora/typora-user-images/image-20221215062200962.png">
   
   
   
-  <title>吴恩达-机器学习-多分类问题 - Hexo</title>
+  <title>Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -312,7 +309,7 @@ mjx-container[display="true"] + br {
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="吴恩达-机器学习-多分类问题"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -323,8 +320,8 @@ mjx-container[display="true"] + br {
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-12-14 18:59" pubdate>
-          2022年12月14日 晚上
+        <time datetime="2022-12-15 06:30" pubdate>
+          2022年12月15日 早上
         </time>
       </span>
     
@@ -335,7 +332,7 @@ mjx-container[display="true"] + br {
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          291 字
+          221 字
         
       </span>
     
@@ -346,7 +343,7 @@ mjx-container[display="true"] + br {
         
         
         
-          3 分钟
+          2 分钟
         
       </span>
     
@@ -384,26 +381,20 @@ mjx-container[display="true"] + br {
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">吴恩达-机器学习-多分类问题</h1>
+            <h1 style="display: none"></h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="多分类问题"><a href="#多分类问题" class="headerlink" title="多分类问题"></a>多分类问题</h1><p><img src="/2022/12/14/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%A4%9A%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98/Snipaste_2022-12-14_19-01-23.png" srcset="/img/loading.gif" lazyload alt></p>
-<p>目标取值在一个离散集合中，而不是像以前的分类问题一样取值只要两个。</p>
-<p>其对应的公式为</p>
-<script type="math/tex; mode=display">
-z_j=\vec{w_j} \cdot \vec{x} +b_j j=1,...,N \\
-a_j= \frac{e^{z_j}}{\sum_{k=1}^{N}e^{z_k}}=P(y=j|\vec{x} )</script><p>下面是一个计算例子</p>
-<p><img src="/2022/12/14/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%A4%9A%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98/Snipaste_2022-12-14_19-20-56.png" srcset="/img/loading.gif" lazyload alt></p>
-<p>损失函数定义为</p>
-<script type="math/tex; mode=display">
-loss(a_1,...,a_N,y)=\begin {cases} {-loga_1 \quad if \quad y=1}\\
-                      -loga_2 \quad if \quad y=2 \\
-                      ...\\
-                      -loga_N \quad if \quad y=N
-                      \end{cases}</script><h1 id="神经网络中的softmax"><a href="#神经网络中的softmax" class="headerlink" title="神经网络中的softmax"></a>神经网络中的softmax</h1><p><img src="/2022/12/14/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%A4%9A%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98/Snipaste_2022-12-14_19-38-45.png" srcset="/img/loading.gif" lazyload alt></p>
-
+                <h1 id="操作技能量化"><a href="#操作技能量化" class="headerlink" title="操作技能量化"></a>操作技能量化</h1><ol>
+<li><p>第一部分为飞行员 驾驶飞机应具备的基本技能：①完成既定的任务，如：是否将飞机停在正确的停机位； ②在完成任务的过程中必须符合相关规定，不能违反飞行规则。</p>
+</li>
+<li><p>第二部分为飞行员操 作的熟练程度：①操作是否及时，如：执行拉平时的速度、高度是否准确；②操作是否稳定，如是否平滑地操纵驾驶杆。</p>
+</li>
+</ol>
+<p>   其中操作的平稳性、规范性是用来评价飞行员对控制部件操作的优劣，完成度和及时性是根据飞机表现出来的特征评价飞行员的操作技能。</p>
+<p><img src="/2022/12/15/%E8%AE%BA%E6%96%87/Users\van\AppData\Roaming\Typora\typora-user-images\image-20221215062200962.png" srcset="/img/loading.gif" lazyload alt></p>
+<h1 id="功率谱分析的方法"><a href="#功率谱分析的方法" class="headerlink" title="功率谱分析的方法"></a>功率谱分析的方法</h1><h1 id="熵权TOPSIS模型"><a href="#熵权TOPSIS模型" class="headerlink" title="熵权TOPSIS模型"></a>熵权TOPSIS模型</h1>
                 
               </div>
             
@@ -411,13 +402,6 @@ loss(a_1,...,a_N,y)=\begin {cases} {-loga_1 \quad if \quad y=1}\\
             <div>
               <div class="post-metas my-3">
   
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">#机器学习</a>
-      
-    </div>
   
 </div>
 
@@ -427,8 +411,8 @@ loss(a_1,...,a_N,y)=\begin {cases} {-loga_1 \quad if \quad y=1}\\
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>吴恩达-机器学习-多分类问题</div>
-      <div>https://jerryvan22.github.io/2022/12/14/吴恩达-机器学习-多分类问题/</div>
+      <div></div>
+      <div>https://jerryvan22.github.io/2022/12/15/论文/</div>
     </div>
     <div class="license-meta">
       
@@ -440,7 +424,7 @@ loss(a_1,...,a_N,y)=\begin {cases} {-loga_1 \quad if \quad y=1}\\
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年12月14日</div>
+          <div>2022年12月15日</div>
         </div>
       
       
@@ -472,9 +456,9 @@ loss(a_1,...,a_N,y)=\begin {cases} {-loga_1 \quad if \quad y=1}\\
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/12/15/%E8%AE%BA%E6%96%87/" title="">
+                      <a href="/2022/12/18/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%98%E5%82%A8/" title="数据库存储">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
+                        <span class="hidden-mobile">数据库存储</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -482,8 +466,8 @@ loss(a_1,...,a_N,y)=\begin {cases} {-loga_1 \quad if \quad y=1}\\
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/12/06/cs231n-%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB-%E7%BA%BF%E6%80%A7%E5%88%86%E7%B1%BB/" title="cs231n-图像分类-线性分类">
-                        <span class="hidden-mobile">cs231n-图像分类-线性分类</span>
+                      <a href="/2022/12/14/%E5%90%B4%E6%81%A9%E8%BE%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%A4%9A%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98/" title="吴恩达-机器学习-多分类问题">
+                        <span class="hidden-mobile">吴恩达-机器学习-多分类问题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
